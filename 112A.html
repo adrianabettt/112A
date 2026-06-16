@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title> Ligue a Linguagem!</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Nunito', sans-serif; background: #FFF8EE; min-height: 100vh; padding: 0 0 60px; }
+
+  .topo { background: #F5A623; padding: 16px 24px; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 0 #D4851A; }
+  .topo-icon { font-size: 44px; line-height: 1; }
+  .topo-title { font-size: 22px; font-weight: 900; color: #3D1C00; line-height: 1.1; }
+  .topo-sub { font-size: 13px; font-weight: 700; color: #6B3000; margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .conceito-box {
+    max-width: 700px; margin: 20px auto 0; padding: 0 16px;
+  }
+  .conceito-card {
+    background: #fff; border: 3px solid #F5A623; border-radius: 20px;
+    padding: 18px 20px; text-align: center; box-shadow: 0 5px 0 #F5A623;
+  }
+  .conceito-label { font-size: 13px; font-weight: 900; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .conceito-texto { font-size: 19px; font-weight: 900; color: #3D1C00; line-height: 1.5; }
+  .conceito-texto span { color: #F5A623; }
+
+  .container { max-width: 700px; margin: 0 auto; padding: 20px 16px 0; }
+
+  .act-card { background: #fff; border-radius: 24px; border: 3px solid #F5A623; padding: 24px; margin-bottom: 24px; box-shadow: 0 6px 0 #F5A623; }
+  .act-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
+  .act-num { background: #F5A623; color: #3D1C00; font-size: 18px; font-weight: 900; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .act-title { font-size: 18px; font-weight: 900; color: #222; text-transform: uppercase; line-height: 1.2; flex: 1; }
+  .act-pontos { background: #FFF4DD; border: 2px solid #F5A623; border-radius: 10px; padding: 4px 12px; font-size: 14px; font-weight: 900; color: #6B3000; white-space: nowrap; }
+  .act-pontos.ok { background: #D4EDDA; border-color: #28A745; color: #155724; }
+  .act-pontos.parcial { background: #FFF3CD; border-color: #FFC107; color: #856404; }
+  .act-instr { font-size: 15px; font-weight: 700; color: #555; margin-bottom: 20px; line-height: 1.4; }
+
+  .feedback { border-radius: 14px; padding: 12px 16px; font-size: 16px; font-weight: 900; margin-top: 14px; display: none; line-height: 1.4; }
+  .feedback.show { display: block; }
+  .feedback.ok  { background: #D4EDDA; color: #155724; border: 2px solid #28A745; }
+  .feedback.err { background: #F8D7DA; color: #721C24; border: 2px solid #DC3545; }
+
+  /* LIGAR */
+  .ligar-wrap { display: flex; align-items: stretch; gap: 0; }
+  .ligar-col-esq { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+  .ligar-col-dir { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+  .ligar-svg-wrap { flex-shrink: 0; width: 70px; position: relative; }
+  .ligar-svg-wrap svg { width: 100%; height: 100%; display: block; }
+
+  .palavra-item {
+    background: #EEF6FF; border: 3px solid #90C1F5; border-radius: 16px;
+    padding: 14px 16px; font-size: 16px; font-weight: 900; color: #1A4D8F;
+    text-transform: uppercase; text-align: center; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    min-height: 64px; display: flex; align-items: center; justify-content: center;
+    user-select: none; gap: 8px;
+  }
+  .palavra-item .pw-icon { font-size: 26px; }
+  .palavra-item:hover { transform: scale(1.03); border-color: #F5A623; }
+  .palavra-item.sel  { border-color: #F5A623; background: #FFF4DD; color: #3D1C00; }
+  .palavra-item.done { border-color: #28A745; background: #D4EDDA; color: #155724; pointer-events: none; }
+  .palavra-item.err-flash { border-color: #DC3545; background: #F8D7DA; }
+
+  .desenho-item {
+    background: #FFF4E0; border: 3px solid #F5A623; border-radius: 16px;
+    padding: 10px; text-align: center; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
+    min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    user-select: none; gap: 6px;
+  }
+  .desenho-item .ds-emoji { font-size: 36px; line-height: 1; }
+  .desenho-item .ds-ex { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; }
+  .desenho-item:hover { transform: scale(1.03); border-color: #D4851A; }
+  .desenho-item.done { border-color: #28A745; background: #D4EDDA; pointer-events: none; }
+  .desenho-item.err-flash { border-color: #DC3545; background: #F8D7DA; }
+
+  /* NOTA FINAL */
+  .nota-wrap { display: none; text-align: center; background: #fff; border-radius: 24px; border: 3px solid #F5A623; box-shadow: 0 6px 0 #F5A623; padding: 32px 20px; margin-bottom: 24px; }
+  .nota-wrap.show { display: block; }
+  .nota-emoji { font-size: 64px; display: block; margin-bottom: 8px; }
+  .nota-estrelas { font-size: 32px; letter-spacing: 6px; margin-bottom: 12px; }
+  .nota-circulo { width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; border: 6px solid #F5A623; background: #FFF4DD; }
+  .nota-circulo.n10   { border-color: #28A745; background: #D4EDDA; }
+  .nota-circulo.nalta { border-color: #5cb85c; background: #eafaea; }
+  .nota-circulo.nmed  { border-color: #FFC107; background: #FFF3CD; }
+  .nota-circulo.nbaixa{ border-color: #DC3545; background: #F8D7DA; }
+  .nota-num { font-size: 52px; font-weight: 900; line-height: 1; color: #3D1C00; }
+  .nota-de10 { font-size: 17px; font-weight: 700; color: #888; }
+  .n10   .nota-num, .nalta .nota-num { color: #155724; }
+  .nmed  .nota-num { color: #856404; }
+  .nbaixa .nota-num { color: #721C24; }
+  .n10   .nota-de10, .nalta .nota-de10 { color: #155724; }
+  .nmed  .nota-de10 { color: #856404; }
+  .nbaixa .nota-de10 { color: #721C24; }
+  .nota-det { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 400px; margin: 0 auto 16px; }
+  .det-card { border-radius: 14px; padding: 12px; text-align: center; }
+  .det-card.ok  { border: 2px solid #28A745; background: #D4EDDA; }
+  .det-card.err { border: 2px solid #DC3545; background: #F8D7DA; }
+  .det-nome { font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
+  .det-card.ok  .det-nome { color: #155724; }
+  .det-card.err .det-nome { color: #721C24; }
+  .det-pts { font-size: 20px; font-weight: 900; }
+  .det-card.ok  .det-pts { color: #155724; }
+  .det-card.err .det-pts { color: #721C24; }
+  .nota-msg { font-size: 16px; font-weight: 700; color: #888; margin-bottom: 20px; line-height: 1.6; }
+  .btn-novo { background: #F5A623; border: none; border-radius: 14px; padding: 13px 32px; font-size: 17px; font-weight: 900; color: #3D1C00; cursor: pointer; font-family: 'Nunito', sans-serif; box-shadow: 0 4px 0 #D4851A; text-transform: uppercase; }
+  .btn-novo:active { transform: translateY(2px); }
+
+  .habilidade-tag { text-align: center; font-size: 11px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 8px; padding: 0 16px; }
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div class="topo-icon">🔗</div>
+  <div>
+    <div class="topo-title"> LIGUE A LINGUAGEM AO EXEMPLO!</div>
+    </div>
+</div>
+
+<div class="container">
+
+  <!-- ATIVIDADE 1 -->
+  <div class="act-card">
+    <div class="act-header">
+      <div class="act-num">1</div>
+      <div class="act-title">LIGUE A LINGUAGEM AO EXEMPLO CERTO!</div>
+      <div class="act-pontos" id="badge1">VALE 5 PTS</div>
+    </div>
+    <div class="act-instr">👆 TOQUE NA PALAVRA E DEPOIS NO DESENHO QUE COMBINA!</div>
+    <div class="ligar-wrap">
+      <div class="ligar-col-esq" id="col-esq"></div>
+      <div class="ligar-svg-wrap" id="svg-wrap"><svg id="linhas-svg" xmlns="http://www.w3.org/2000/svg"></svg></div>
+      <div class="ligar-col-dir" id="col-dir"></div>
+    </div>
+    <div class="feedback" id="fb1"></div>
+  </div>
+
+  <!-- ATIVIDADE 2 -->
+  <div class="act-card">
+    <div class="act-header">
+      <div class="act-num">2</div>
+      <div class="act-title">CLIQUE NO QUE PODE TRANSMITIR UMA INFORMAÇÃO!</div>
+      <div class="act-pontos" id="badge2">VALE 5 PTS</div>
+    </div>
+    <div class="act-instr">👆 TOQUE EM TUDO QUE PODE TRANSMITIR UMA MENSAGEM!</div>
+    <div id="circule-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;"></div>
+    <button style="margin-top:16px;background:#F5A623;border:none;border-radius:12px;padding:12px 28px;font-size:16px;font-weight:900;color:#3D1C00;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 4px 0 #D4851A;" id="btn2" onclick="checkQ2()">VERIFICAR ✔</button>
+    <div class="feedback" id="fb2"></div>
+  </div>
+
+  <!-- NOTA FINAL -->
+  <div class="nota-wrap" id="nota-wrap">
+    <span class="nota-emoji" id="nota-emoji">🏆</span>
+    <div class="nota-estrelas" id="nota-estrelas">⭐⭐</div>
+    <div style="font-size:22px;font-weight:900;color:#3D1C00;margin-bottom:16px;text-transform:uppercase;" id="nota-titulo">PARABÉNS!</div>
+    <div style="font-size:15px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">SUA NOTA</div>
+    <div class="nota-circulo" id="nota-circ">
+      <span class="nota-num" id="nota-num">10</span>
+      <span class="nota-de10">de 10</span>
+    </div>
+    <div class="nota-det" id="nota-det"></div>
+    <div class="nota-msg" id="nota-msg"></div>
+    <button class="btn-novo" onclick="reiniciar()">TENTAR DE NOVO ↺</button>
+  </div>
+
+  <div class="habilidade-tag">EF01CO04 — A informação pode ser transmitida em várias linguagens: falas, desenhos, números e sinais.</div>
+</div>
+
+<script>
+// ===== PONTUAÇÃO =====
+let pts = [0, 0];
+let erros = [0, 0];
+let done = [false, false];
+
+function calcPts(idx, max) { return Math.max(0, max - erros[idx] * (max * 0.2)); }
+function fmt(n) { return n.toFixed(1).replace('.', ','); }
+function fmtInt(n) { return Number.isInteger(n) ? String(n) : fmt(n); }
+
+function checkDone() {
+  if (done[0] && done[1]) setTimeout(mostrarNota, 700);
+}
+
+function setBadge(idx, val, max) {
+  const b = document.getElementById('badge' + (idx+1));
+  if (!b) return;
+  b.textContent = fmtInt(val) + ' PTS';
+  b.className = 'act-pontos ' + (val >= max ? 'ok' : val >= max*0.5 ? 'parcial' : '');
+}
+
+// ===== ATIVIDADE 1 — LIGAR =====
+const pares = [
+  { palavra: '🗣️ FALA',     icon:'🗣️', exemplo: '💬', ex_label: 'CONVERSA',    cor: '#90C1F5' },
+  { palavra: '🎨 DESENHO',  icon:'🎨', exemplo: '🖼️', ex_label: 'QUADRO',      cor: '#f5b8f5' },
+  { palavra: '🔢 NÚMERO',   icon:'🔢', exemplo: '📊', ex_label: 'GRÁFICO',     cor: '#b8f5b8' },
+  { palavra: '🤟 SINAL',    icon:'🤟', exemplo: '🚦', ex_label: 'SEMÁFORO',    cor: '#f5d8b8' },
+];
+const dirOrder = [2, 0, 3, 1];
+let selEsq = null;
+let ligCount = 0;
+
+function buildLigar() {
+  const esq = document.getElementById('col-esq');
+  const dir = document.getElementById('col-dir');
+  esq.innerHTML = ''; dir.innerHTML = '';
+  pares.forEach((p, i) => {
+    const d = document.createElement('div');
+    d.className = 'palavra-item'; d.id = 'pe-' + i;
+    d.innerHTML = `<span class="pw-icon">${p.icon}</span>${p.palavra.split(' ').slice(1).join(' ')}`;
+    d.onclick = () => selectEsq(i);
+    esq.appendChild(d);
+  });
+  dirOrder.forEach((pi, j) => {
+    const p = pares[pi];
+    const d = document.createElement('div');
+    d.className = 'desenho-item'; d.id = 'pd-' + j; d.dataset.target = pi;
+    d.innerHTML = `<span class="ds-emoji">${p.exemplo}</span><span class="ds-ex">${p.ex_label}</span>`;
+    d.onclick = () => selectDir(j);
+    dir.appendChild(d);
+  });
+  resizeSvg();
+}
+
+function resizeSvg() {
+  const wrap = document.getElementById('svg-wrap');
+  const esq  = document.getElementById('col-esq');
+  wrap.style.height = esq.offsetHeight + 'px';
+  const svg = document.getElementById('linhas-svg');
+  svg.setAttribute('viewBox', '0 0 70 ' + esq.offsetHeight);
+  svg.innerHTML = '';
+}
+
+function selectEsq(i) {
+  const el = document.getElementById('pe-' + i);
+  if (el.classList.contains('done')) return;
+  document.querySelectorAll('.palavra-item').forEach(e => e.classList.remove('sel'));
+  el.classList.add('sel'); selEsq = i;
+}
+
+function selectDir(j) {
+  const el = document.getElementById('pd-' + j);
+  if (el.classList.contains('done')) return;
+  if (selEsq === null) { showFb('fb1', false, '✘ PRIMEIRO TOQUE NA PALAVRA À ESQUERDA!'); return; }
+  const alvo = parseInt(el.dataset.target);
+  if (alvo === selEsq) {
+    document.getElementById('pe-' + selEsq).classList.remove('sel');
+    document.getElementById('pe-' + selEsq).classList.add('done');
+    el.classList.add('done');
+    drawLinha(selEsq, j);
+    selEsq = null; ligCount++;
+    document.getElementById('fb1').className = 'feedback';
+    if (ligCount === pares.length) {
+      pts[0] = calcPts(0, 5); setBadge(0, pts[0], 5);
+      showFb('fb1', true, '✔ MUITO BEM! VOCÊ LIGOU TUDO CERTO! ' + fmtInt(pts[0]) + ' PONTOS!');
+      done[0] = true; checkDone();
+    }
+  } else {
+    erros[0]++;
+    el.classList.add('err-flash');
+    document.getElementById('pe-' + selEsq).classList.remove('sel');
+    document.getElementById('pe-' + selEsq).classList.add('err-flash');
+    selEsq = null;
+    showFb('fb1', false, '✘ NÃO É ESSE! OLHA BEM E TENTE DE NOVO! (−1 PTO)');
+    setTimeout(() => {
+      document.querySelectorAll('.err-flash').forEach(e => e.classList.remove('err-flash'));
+      document.getElementById('fb1').className = 'feedback';
+    }, 1200);
+  }
+}
+
+function drawLinha(ei, di) {
+  const le = document.getElementById('pe-' + ei);
+  const re = document.getElementById('pd-' + di);
+  const wrap = document.getElementById('svg-wrap');
+  const wr = wrap.getBoundingClientRect();
+  const lr = le.getBoundingClientRect();
+  const rr = re.getBoundingClientRect();
+  const y1 = (lr.top + lr.height/2) - wr.top;
+  const y2 = (rr.top + rr.height/2) - wr.top;
+  const svg = document.getElementById('linhas-svg');
+  svg.setAttribute('viewBox', '0 0 70 ' + wrap.offsetHeight);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+  line.setAttribute('x1','2'); line.setAttribute('y1', y1);
+  line.setAttribute('x2','68'); line.setAttribute('y2', y2);
+  line.setAttribute('stroke','#28A745'); line.setAttribute('stroke-width','3');
+  line.setAttribute('stroke-linecap','round'); line.setAttribute('stroke-dasharray','none');
+  svg.appendChild(line);
+}
+
+buildLigar(); window.addEventListener('resize', buildLigar);
+
+// ===== ATIVIDADE 2 — CIRCULE =====
+const q2Items = [
+  { icon:'🗣️', label:'FALA',         ok: true  },
+  { icon:'🎵', label:'MÚSICA',        ok: true  },
+  { icon:'🏀', label:'BOLA',          ok: false },
+  { icon:'🖼️', label:'DESENHO',       ok: true  },
+  { icon:'🍎', label:'MAÇÃ',          ok: false },
+  { icon:'🔢', label:'NÚMERO',        ok: true  },
+  { icon:'🤟', label:'SINAL',         ok: true  },
+  { icon:'🎂', label:'BOLO',          ok: false },
+];
+
+function buildQ2() {
+  const grid = document.getElementById('circule-grid');
+  grid.innerHTML = '';
+  q2Items.forEach((item, i) => {
+    const d = document.createElement('div');
+    d.id = 'q2-' + i;
+    d.style.cssText = 'border:3px solid #ddd;border-radius:16px;padding:12px 6px 10px;text-align:center;background:#FAFAFA;cursor:pointer;transition:border-color 0.15s,background 0.15s,transform 0.1s;user-select:none;';
+    d.innerHTML = `<span style="font-size:36px;display:block;margin-bottom:6px;">${item.icon}</span><span style="font-size:12px;font-weight:900;color:#555;text-transform:uppercase;letter-spacing:0.5px;">${item.label}</span>`;
+    d.onclick = () => {
+      if (d.style.borderColor === 'rgb(40, 167, 69)' || d.style.borderColor === 'rgb(220, 53, 69)') return;
+      d.style.borderColor = d.dataset.sel === '1' ? '#ddd' : '#F5A623';
+      d.style.background  = d.dataset.sel === '1' ? '#FAFAFA' : '#FFF4DD';
+      d.dataset.sel = d.dataset.sel === '1' ? '0' : '1';
+    };
+    grid.appendChild(d);
+  });
+}
+buildQ2();
+
+function checkQ2() {
+  let allOk = true;
+  q2Items.forEach((item, i) => {
+    const d = document.getElementById('q2-' + i);
+    const sel = d.dataset.sel === '1';
+    d.onclick = null;
+    if (item.ok && sel)  { d.style.borderColor='#28A745'; d.style.background='#D4EDDA'; }
+    else if (!item.ok && sel)  { d.style.borderColor='#DC3545'; d.style.background='#F8D7DA'; allOk=false; }
+    else if (item.ok && !sel)  { d.style.borderColor='#28A745'; d.style.background='#D4EDDA'; allOk=false; }
+  });
+  if (allOk) {
+    pts[1] = calcPts(1, 5); setBadge(1, pts[1], 5);
+    showFb('fb2', true, '✔ ARRASOU! FALA, MÚSICA, DESENHO, NÚMERO E SINAL SÃO LINGUAGENS! ' + fmtInt(pts[1]) + ' PONTOS!');
+    document.getElementById('btn2').disabled = true;
+    done[1] = true; checkDone();
+  } else {
+    erros[1]++;
+    showFb('fb2', false, '✘ QUASE! AS VERDES SÃO AS CORRETAS. TENTE DE NOVO! (−1 PTO)');
+    setTimeout(() => {
+      buildQ2(); document.getElementById('fb2').className = 'feedback';
+    }, 2500);
+  }
+}
+
+// ===== NOTA FINAL =====
+function mostrarNota() {
+  const total = pts[0] + pts[1];
+  const nota  = Math.round(total * 10) / 10;
+  const circ  = document.getElementById('nota-circ');
+  document.getElementById('nota-num').textContent = fmtInt(nota);
+  circ.className = 'nota-circulo ' + (nota===10?'n10':nota>=7?'nalta':nota>=5?'nmed':'nbaixa');
+
+  const det = document.getElementById('nota-det');
+  det.innerHTML = [['LIGAR',pts[0]],['CLIQUE',pts[1]]].map(([n,p])=>`
+    <div class="det-card ${p>=5?'ok':'err'}">
+      <div class="det-nome">${n}</div>
+      <div class="det-pts">${fmtInt(p)} pts</div>
+    </div>`).join('');
+
+  let emoji, ests, titulo, msg;
+  if (nota===10) { emoji='🏆';ests='⭐⭐⭐';titulo='NOTA 10! INCRÍVEL!';msg='VOCÊ ACERTOU TUDO!\nPARABÉNS, EXPERT EM LINGUAGENS!'; }
+  else if (nota>=7) { emoji='😄';ests='⭐⭐';titulo='MUITO BEM!';msg='VOCÊ APRENDEU MUITO!\nTENTE DE NOVO PARA TIRAR 10!'; }
+  else { emoji='💪';ests='⭐';titulo='CONTINUE TENTANDO!';msg='RELEIA O CONTEÚDO E TENTE DE NOVO!'; }
+
+  document.getElementById('nota-emoji').textContent    = emoji;
+  document.getElementById('nota-estrelas').textContent = ests;
+  document.getElementById('nota-titulo').textContent   = titulo;
+  document.getElementById('nota-msg').textContent      = msg;
+  document.getElementById('nota-wrap').classList.add('show');
+  document.getElementById('nota-wrap').scrollIntoView({ behavior:'smooth' });
+}
+
+function showFb(id, ok, msg) {
+  const el = document.getElementById(id);
+  el.textContent = msg; el.className = 'feedback ' + (ok?'ok':'err') + ' show';
+}
+
+function reiniciar() {
+  pts=[0,0]; erros=[0,0]; done=[false,false];
+  const b1=document.getElementById('badge1'); if(b1){b1.textContent='VALE 5 PTS';b1.className='act-pontos';}
+  const b2=document.getElementById('badge2'); if(b2){b2.textContent='VALE 5 PTS';b2.className='act-pontos';}
+  selEsq=null; ligCount=0; buildLigar();
+  buildQ2(); document.getElementById('btn2').disabled=false;
+  ['fb1','fb2'].forEach(id => document.getElementById(id).className='feedback');
+  document.getElementById('nota-wrap').classList.remove('show');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
