@@ -3,38 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title> Ligue a Linguagem!</title>
+<title>Atividade A — Linguagens da Informação</title>
 <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;900&display=swap" rel="stylesheet">
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { font-family: 'Nunito', sans-serif; background: #FFF8EE; min-height: 100vh; padding: 0 0 60px; }
 
-  .topo { background: #F5A623; padding: 16px 24px; display: flex; align-items: center; gap: 14px; box-shadow: 0 4px 0 #D4851A; }
-  .topo-icon { font-size: 44px; line-height: 1; }
-  .topo-title { font-size: 22px; font-weight: 900; color: #3D1C00; line-height: 1.1; }
-  .topo-sub { font-size: 13px; font-weight: 700; color: #6B3000; margin-top: 3px; text-transform: uppercase; letter-spacing: 1px; }
+  .topo { background: #F5A623; padding: 16px 20px; display: flex; align-items: center; gap: 12px; box-shadow: 0 4px 0 #D4851A; }
+  .topo-icon { font-size: 42px; line-height: 1; }
+  .topo-title { font-size: 20px; font-weight: 900; color: #3D1C00; line-height: 1.1; }
+  .topo-sub { font-size: 13px; font-weight: 700; color: #6B3000; margin-top: 2px; text-transform: uppercase; letter-spacing: 1px; }
 
-  .conceito-box {
-    max-width: 700px; margin: 20px auto 0; padding: 0 16px;
-  }
-  .conceito-card {
-    background: #fff; border: 3px solid #F5A623; border-radius: 20px;
-    padding: 18px 20px; text-align: center; box-shadow: 0 5px 0 #F5A623;
-  }
-  .conceito-label { font-size: 13px; font-weight: 900; color: #888; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-  .conceito-texto { font-size: 19px; font-weight: 900; color: #3D1C00; line-height: 1.5; }
+  /* CONCEITO */
+  .conceito-box { max-width: 700px; margin: 18px auto 0; padding: 0 16px; }
+  .conceito-card { background: #fff; border: 3px solid #F5A623; border-radius: 20px; padding: 16px 18px; text-align: center; box-shadow: 0 5px 0 #F5A623; }
+  .conceito-label { font-size: 12px; font-weight: 900; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .conceito-texto { font-size: 20px; font-weight: 900; color: #3D1C00; line-height: 1.7; }
   .conceito-texto span { color: #F5A623; }
+  .ling-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 10px; margin-top: 14px; }
+  .ling-item { background: #FFF4DD; border: 2px solid #F5A623; border-radius: 14px; padding: 12px 6px; text-align: center; }
+  .ling-item .li-icon { font-size: 30px; display: block; margin-bottom: 5px; }
+  .ling-item .li-txt { font-size: 13px; font-weight: 900; color: #3D1C00; text-transform: uppercase; }
 
-  .container { max-width: 700px; margin: 0 auto; padding: 20px 16px 0; }
+  .container { max-width: 700px; margin: 0 auto; padding: 18px 16px 0; }
 
-  .act-card { background: #fff; border-radius: 24px; border: 3px solid #F5A623; padding: 24px; margin-bottom: 24px; box-shadow: 0 6px 0 #F5A623; }
+  .act-card { background: #fff; border-radius: 22px; border: 3px solid #F5A623; padding: 22px; margin-bottom: 22px; box-shadow: 0 6px 0 #F5A623; }
   .act-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; flex-wrap: wrap; }
   .act-num { background: #F5A623; color: #3D1C00; font-size: 18px; font-weight: 900; width: 38px; height: 38px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
   .act-title { font-size: 18px; font-weight: 900; color: #222; text-transform: uppercase; line-height: 1.2; flex: 1; }
   .act-pontos { background: #FFF4DD; border: 2px solid #F5A623; border-radius: 10px; padding: 4px 12px; font-size: 14px; font-weight: 900; color: #6B3000; white-space: nowrap; }
   .act-pontos.ok { background: #D4EDDA; border-color: #28A745; color: #155724; }
   .act-pontos.parcial { background: #FFF3CD; border-color: #FFC107; color: #856404; }
-  .act-instr { font-size: 15px; font-weight: 700; color: #555; margin-bottom: 20px; line-height: 1.4; }
+  .act-instr { font-size: 16px; font-weight: 700; color: #555; margin-bottom: 18px; line-height: 1.5; }
 
   .feedback { border-radius: 14px; padding: 12px 16px; font-size: 16px; font-weight: 900; margin-top: 14px; display: none; line-height: 1.4; }
   .feedback.show { display: block; }
@@ -50,13 +50,13 @@
 
   .palavra-item {
     background: #EEF6FF; border: 3px solid #90C1F5; border-radius: 16px;
-    padding: 14px 16px; font-size: 16px; font-weight: 900; color: #1A4D8F;
+    padding: 14px 10px; font-size: 18px; font-weight: 900; color: #1A4D8F;
     text-transform: uppercase; text-align: center; cursor: pointer;
     transition: border-color 0.15s, background 0.15s, transform 0.1s;
-    min-height: 64px; display: flex; align-items: center; justify-content: center;
-    user-select: none; gap: 8px;
+    min-height: 72px; display: flex; align-items: center; justify-content: center;
+    user-select: none; gap: 8px; flex-direction: column;
   }
-  .palavra-item .pw-icon { font-size: 26px; }
+  .palavra-item .pw-icon { font-size: 32px; }
   .palavra-item:hover { transform: scale(1.03); border-color: #F5A623; }
   .palavra-item.sel  { border-color: #F5A623; background: #FFF4DD; color: #3D1C00; }
   .palavra-item.done { border-color: #28A745; background: #D4EDDA; color: #155724; pointer-events: none; }
@@ -64,68 +64,115 @@
 
   .desenho-item {
     background: #FFF4E0; border: 3px solid #F5A623; border-radius: 16px;
-    padding: 10px; text-align: center; cursor: pointer;
+    padding: 10px 6px; text-align: center; cursor: pointer;
     transition: border-color 0.15s, background 0.15s, transform 0.1s;
-    min-height: 64px; display: flex; flex-direction: column; align-items: center; justify-content: center;
-    user-select: none; gap: 6px;
+    min-height: 72px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    user-select: none; gap: 5px;
   }
-  .desenho-item .ds-emoji { font-size: 36px; line-height: 1; }
-  .desenho-item .ds-ex { font-size: 12px; font-weight: 700; color: #888; text-transform: uppercase; }
+  .desenho-item .ds-emoji { font-size: 38px; line-height: 1; }
+  .desenho-item .ds-ex { font-size: 12px; font-weight: 900; color: #888; text-transform: uppercase; }
   .desenho-item:hover { transform: scale(1.03); border-color: #D4851A; }
   .desenho-item.done { border-color: #28A745; background: #D4EDDA; pointer-events: none; }
   .desenho-item.err-flash { border-color: #DC3545; background: #F8D7DA; }
 
+  /* CIRCULE */
+  .circ-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .circ-item {
+    border: 3px solid #ddd; border-radius: 18px; padding: 14px 8px 12px;
+    text-align: center; background: #FAFAFA; cursor: pointer;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s; user-select: none;
+  }
+  .circ-item:hover { border-color: #F5A623; background: #FFF4DD; transform: scale(1.03); }
+  .circ-item .ci-icon { font-size: 40px; display: block; margin-bottom: 8px; }
+  .circ-item .ci-txt  { font-size: 13px; font-weight: 900; color: #555; text-transform: uppercase; letter-spacing: 0.5px; }
+  .circ-item.sel    { border-color: #F5A623; background: #FFF4DD; }
+  .circ-item.certo  { border-color: #28A745; background: #D4EDDA; pointer-events: none; }
+  .circ-item.certo .ci-txt { color: #155724; }
+  .circ-item.errado { border-color: #DC3545; background: #F8D7DA; pointer-events: none; }
+  .circ-item.errado .ci-txt { color: #721C24; }
+
+  .btn-check { margin-top: 16px; background: #F5A623; border: none; border-radius: 12px; padding: 13px 30px; font-size: 17px; font-weight: 900; color: #3D1C00; cursor: pointer; font-family: 'Nunito', sans-serif; box-shadow: 0 4px 0 #D4851A; transition: transform 0.1s; }
+  .btn-check:active { transform: translateY(2px); box-shadow: 0 2px 0 #D4851A; }
+  .btn-check:disabled { background: #ddd; color: #999; box-shadow: 0 4px 0 #bbb; cursor: default; }
+
   /* NOTA FINAL */
-  .nota-wrap { display: none; text-align: center; background: #fff; border-radius: 24px; border: 3px solid #F5A623; box-shadow: 0 6px 0 #F5A623; padding: 32px 20px; margin-bottom: 24px; }
-  .nota-wrap.show { display: block; }
-  .nota-emoji { font-size: 64px; display: block; margin-bottom: 8px; }
+  @keyframes notaEntrada {
+    0%   { opacity: 0; transform: scale(0.85) translateY(30px); }
+    60%  { transform: scale(1.04) translateY(-4px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1);}50%{transform:scale(1.06);} }
+  .nota-wrap { display: none; text-align: center; background: #fff; border-radius: 24px; border: 4px solid #F5A623; box-shadow: 0 8px 0 #D4851A, 0 0 0 6px #FFE5B0; padding: 36px 20px; margin-bottom: 24px; }
+  .nota-wrap.show { display: block; animation: notaEntrada 0.6s cubic-bezier(0.34,1.56,0.64,1) both; }
+  .nota-wrap.show .nota-circ { animation: pulse 1.2s ease-in-out 0.7s 2; }
+  .nota-emoji  { font-size: 64px; display: block; margin-bottom: 8px; }
   .nota-estrelas { font-size: 32px; letter-spacing: 6px; margin-bottom: 12px; }
-  .nota-circulo { width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; border: 6px solid #F5A623; background: #FFF4DD; }
-  .nota-circulo.n10   { border-color: #28A745; background: #D4EDDA; }
-  .nota-circulo.nalta { border-color: #5cb85c; background: #eafaea; }
-  .nota-circulo.nmed  { border-color: #FFC107; background: #FFF3CD; }
-  .nota-circulo.nbaixa{ border-color: #DC3545; background: #F8D7DA; }
-  .nota-num { font-size: 52px; font-weight: 900; line-height: 1; color: #3D1C00; }
-  .nota-de10 { font-size: 17px; font-weight: 700; color: #888; }
-  .n10   .nota-num, .nalta .nota-num { color: #155724; }
-  .nmed  .nota-num { color: #856404; }
-  .nbaixa .nota-num { color: #721C24; }
-  .n10   .nota-de10, .nalta .nota-de10 { color: #155724; }
-  .nmed  .nota-de10 { color: #856404; }
-  .nbaixa .nota-de10 { color: #721C24; }
-  .nota-det { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 400px; margin: 0 auto 16px; }
-  .det-card { border-radius: 14px; padding: 12px; text-align: center; }
+  .nota-titulo { font-size: 22px; font-weight: 900; color: #3D1C00; margin-bottom: 16px; text-transform: uppercase; }
+  .nota-label  { font-size: 13px; font-weight: 900; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
+  .nota-circ   { width: 140px; height: 140px; border-radius: 50%; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 16px; border: 6px solid #F5A623; background: #FFF4DD; }
+  .nota-circ.n10   { border-color: #28A745; background: #D4EDDA; }
+  .nota-circ.nalta { border-color: #5cb85c; background: #eafaea; }
+  .nota-circ.nmed  { border-color: #FFC107; background: #FFF3CD; }
+  .nota-circ.nbaixa{ border-color: #DC3545; background: #F8D7DA; }
+  .nota-num  { font-size: 52px; font-weight: 900; line-height: 1; color: #3D1C00; }
+  .nota-de10 { font-size: 16px; font-weight: 700; color: #888; }
+  .n10  .nota-num, .nalta .nota-num { color: #155724; }
+  .nmed .nota-num  { color: #856404; }
+  .nbaixa .nota-num{ color: #721C24; }
+  .n10  .nota-de10, .nalta .nota-de10 { color: #155724; }
+  .nmed .nota-de10 { color: #856404; }
+  .nbaixa .nota-de10{ color: #721C24; }
+  .nota-det { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; max-width: 380px; margin: 0 auto 16px; }
+  .det-card { border-radius: 14px; padding: 12px 10px; text-align: center; }
   .det-card.ok  { border: 2px solid #28A745; background: #D4EDDA; }
+  .det-card.par { border: 2px solid #FFC107; background: #FFF3CD; }
   .det-card.err { border: 2px solid #DC3545; background: #F8D7DA; }
-  .det-nome { font-size: 12px; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
-  .det-card.ok  .det-nome { color: #155724; }
-  .det-card.err .det-nome { color: #721C24; }
-  .det-pts { font-size: 20px; font-weight: 900; }
-  .det-card.ok  .det-pts { color: #155724; }
-  .det-card.err .det-pts { color: #721C24; }
-  .nota-msg { font-size: 16px; font-weight: 700; color: #888; margin-bottom: 20px; line-height: 1.6; }
-  .btn-novo { background: #F5A623; border: none; border-radius: 14px; padding: 13px 32px; font-size: 17px; font-weight: 900; color: #3D1C00; cursor: pointer; font-family: 'Nunito', sans-serif; box-shadow: 0 4px 0 #D4851A; text-transform: uppercase; }
+  .det-nome { font-size: 11px; font-weight: 900; text-transform: uppercase; margin-bottom: 4px; }
+  .det-card.ok .det-nome { color: #155724; } .det-card.par .det-nome { color: #856404; } .det-card.err .det-nome { color: #721C24; }
+  .det-pts  { font-size: 20px; font-weight: 900; }
+  .det-card.ok .det-pts { color: #155724; } .det-card.par .det-pts { color: #856404; } .det-card.err .det-pts { color: #721C24; }
+  .nota-msg  { font-size: 16px; font-weight: 700; color: #888; margin-bottom: 20px; line-height: 1.6; white-space: pre-line; }
+  .btn-novo  { background: #F5A623; border: none; border-radius: 14px; padding: 13px 32px; font-size: 17px; font-weight: 900; color: #3D1C00; cursor: pointer; font-family: 'Nunito', sans-serif; box-shadow: 0 4px 0 #D4851A; text-transform: uppercase; }
   .btn-novo:active { transform: translateY(2px); }
 
-  .habilidade-tag { text-align: center; font-size: 11px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 8px; padding: 0 16px; }
+  .hab-tag { text-align: center; font-size: 11px; font-weight: 700; color: #bbb; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 10px; padding: 0 16px; }
 </style>
 </head>
 <body>
 
+<!-- TOPO -->
 <div class="topo">
-  <div class="topo-icon">🔗</div>
+  <div class="topo-icon">💬</div>
   <div>
-    <div class="topo-title"> LIGUE A LINGUAGEM AO EXEMPLO!</div>
+    <div class="topo-title">LINGUAGENS DA INFORMAÇÃO</div>
+    <div class="topo-sub">1º ANO · ATIVIDADE A</div>
+  </div>
+</div>
+
+<!-- CONCEITO -->
+<div class="conceito-box">
+  <div class="conceito-card">
+    <div class="conceito-label">📖 LEIA COM O PROFESSOR</div>
+    <div class="conceito-texto">
+      A INFORMAÇÃO É UMA <span>MENSAGEM COM SENTIDO</span>.<br>
+      PODEMOS USAR:
     </div>
+    <div class="ling-grid">
+      <div class="ling-item"><span class="li-icon">🗣️</span><span class="li-txt">FALA</span></div>
+      <div class="ling-item"><span class="li-icon">✏️</span><span class="li-txt">DESENHO</span></div>
+      <div class="ling-item"><span class="li-icon">🔢</span><span class="li-txt">NÚMERO</span></div>
+      <div class="ling-item"><span class="li-icon">🪧</span><span class="li-txt">SINAL</span></div>
+    </div>
+  </div>
 </div>
 
 <div class="container">
 
-  <!-- ATIVIDADE 1 -->
+  <!-- ATIVIDADE 1 — LIGAR -->
   <div class="act-card">
     <div class="act-header">
       <div class="act-num">1</div>
-      <div class="act-title">LIGUE A LINGUAGEM AO EXEMPLO CERTO!</div>
+      <div class="act-title">LIGUE A LINGUAGEM AO EXEMPLO!</div>
       <div class="act-pontos" id="badge1">VALE 5 PTS</div>
     </div>
     <div class="act-instr">👆 TOQUE NA PALAVRA E DEPOIS NO DESENHO QUE COMBINA!</div>
@@ -137,26 +184,26 @@
     <div class="feedback" id="fb1"></div>
   </div>
 
-  <!-- ATIVIDADE 2 -->
+  <!-- ATIVIDADE 2 — CIRCULE -->
   <div class="act-card">
     <div class="act-header">
       <div class="act-num">2</div>
-      <div class="act-title">CLIQUE NO QUE PODE TRANSMITIR UMA INFORMAÇÃO!</div>
+      <div class="act-title">TOQUE NAS LINGUAGENS!</div>
       <div class="act-pontos" id="badge2">VALE 5 PTS</div>
     </div>
-    <div class="act-instr">👆 TOQUE EM TUDO QUE PODE TRANSMITIR UMA MENSAGEM!</div>
-    <div id="circule-grid" style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;"></div>
-    <button style="margin-top:16px;background:#F5A623;border:none;border-radius:12px;padding:12px 28px;font-size:16px;font-weight:900;color:#3D1C00;cursor:pointer;font-family:'Nunito',sans-serif;box-shadow:0 4px 0 #D4851A;" id="btn2" onclick="checkQ2()">VERIFICAR ✔</button>
+    <div class="act-instr">👆 TOQUE EM TUDO QUE É UMA LINGUAGEM DA INFORMAÇÃO!</div>
+    <div class="circ-grid" id="circ-grid"></div>
+    <button class="btn-check" id="btn2" onclick="checkQ2()">VERIFICAR ✔</button>
     <div class="feedback" id="fb2"></div>
   </div>
 
   <!-- NOTA FINAL -->
-  <div class="nota-wrap" id="nota-wrap">
+  <div class="nota-wrap" id="nota-wrap" style="display:none">
     <span class="nota-emoji" id="nota-emoji">🏆</span>
-    <div class="nota-estrelas" id="nota-estrelas">⭐⭐</div>
-    <div style="font-size:22px;font-weight:900;color:#3D1C00;margin-bottom:16px;text-transform:uppercase;" id="nota-titulo">PARABÉNS!</div>
-    <div style="font-size:15px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">SUA NOTA</div>
-    <div class="nota-circulo" id="nota-circ">
+    <div class="nota-estrelas" id="nota-estrelas"></div>
+    <div class="nota-titulo" id="nota-titulo"></div>
+    <div class="nota-label">SUA NOTA</div>
+    <div class="nota-circ" id="nota-circ">
       <span class="nota-num" id="nota-num">10</span>
       <span class="nota-de10">de 10</span>
     </div>
@@ -165,227 +212,178 @@
     <button class="btn-novo" onclick="reiniciar()">TENTAR DE NOVO ↺</button>
   </div>
 
-  <div class="habilidade-tag">EF01CO04 — A informação pode ser transmitida em várias linguagens: falas, desenhos, números e sinais.</div>
+  <div class="hab-tag">PROFº ADRIANA BETT TEREBINTO | ATIVIDADE PEDAGÓGICA</div>
 </div>
 
 <script>
-// ===== PONTUAÇÃO =====
-let pts = [0, 0];
-let erros = [0, 0];
-let done = [false, false];
+function shuffle(arr){ const a=[...arr]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} return a; }
 
-function calcPts(idx, max) { return Math.max(0, max - erros[idx] * (max * 0.2)); }
-function fmt(n) { return n.toFixed(1).replace('.', ','); }
-function fmtInt(n) { return Number.isInteger(n) ? String(n) : fmt(n); }
-
-function checkDone() {
-  if (done[0] && done[1]) setTimeout(mostrarNota, 700);
+// PONTUAÇÃO
+let pts=[0,0], erros=[0,0], done=[false,false];
+function calcPts(i,max){ return Math.max(0, max - erros[i]*(max*0.2)); }
+function fmtInt(n){ return Number.isInteger(n)?String(n):n.toFixed(1).replace('.',','); }
+function showFb(id,ok,msg){ const el=document.getElementById(id); el.textContent=msg; el.className='feedback '+(ok?'ok':'err')+' show'; }
+function setBadge(i,val,max){
+  const b=document.getElementById('badge'+(i+1)); if(!b) return;
+  b.textContent=fmtInt(val)+' PTS';
+  b.className='act-pontos '+(val>=max?'ok':val>=max*0.5?'parcial':'');
 }
+function checkDone(){ if(done[0]&&done[1]) setTimeout(mostrarNota,700); }
 
-function setBadge(idx, val, max) {
-  const b = document.getElementById('badge' + (idx+1));
-  if (!b) return;
-  b.textContent = fmtInt(val) + ' PTS';
-  b.className = 'act-pontos ' + (val >= max ? 'ok' : val >= max*0.5 ? 'parcial' : '');
-}
-
-// ===== ATIVIDADE 1 — LIGAR =====
+// Q1 — LIGAR (4 pares, embaralhado)
 const pares = [
-  { palavra: '🗣️ FALA',     icon:'🗣️', exemplo: '💬', ex_label: 'CONVERSA',    cor: '#90C1F5' },
-  { palavra: '🎨 DESENHO',  icon:'🎨', exemplo: '🖼️', ex_label: 'QUADRO',      cor: '#f5b8f5' },
-  { palavra: '🔢 NÚMERO',   icon:'🔢', exemplo: '📊', ex_label: 'GRÁFICO',     cor: '#b8f5b8' },
-  { palavra: '🤟 SINAL',    icon:'🤟', exemplo: '🚦', ex_label: 'SEMÁFORO',    cor: '#f5d8b8' },
+  { palavra:'🗣️ FALA',    icon:'🗣️', exemplo:'💬', ex_label:'CONVERSA'  },
+  { palavra:'✏️ DESENHO', icon:'✏️', exemplo:'🖼️', ex_label:'QUADRO'    },
+  { palavra:'🔢 NÚMERO',  icon:'🔢', exemplo:'📊', ex_label:'GRÁFICO'   },
+  { palavra:'🪧 SINAL',   icon:'🪧', exemplo:'🚦', ex_label:'SEMÁFORO'  },
 ];
-const dirOrder = [2, 0, 3, 1];
-let selEsq = null;
-let ligCount = 0;
+let selEsq=null, ligCount=0;
 
-function buildLigar() {
-  const esq = document.getElementById('col-esq');
-  const dir = document.getElementById('col-dir');
-  esq.innerHTML = ''; dir.innerHTML = '';
-  pares.forEach((p, i) => {
-    const d = document.createElement('div');
-    d.className = 'palavra-item'; d.id = 'pe-' + i;
-    d.innerHTML = `<span class="pw-icon">${p.icon}</span>${p.palavra.split(' ').slice(1).join(' ')}`;
-    d.onclick = () => selectEsq(i);
-    esq.appendChild(d);
+function buildLigar(){
+  const esq=document.getElementById('col-esq'), dir=document.getElementById('col-dir');
+  esq.innerHTML=''; dir.innerHTML='';
+  const dirEmbaralhado=shuffle([...pares.keys()]);
+  pares.forEach((p,i)=>{
+    const d=document.createElement('div'); d.className='palavra-item'; d.id='pe-'+i;
+    d.innerHTML=`<span class="pw-icon">${p.icon}</span>${p.palavra.split(' ').slice(1).join(' ')}`;
+    d.onclick=()=>selectEsq(i); esq.appendChild(d);
   });
-  dirOrder.forEach((pi, j) => {
-    const p = pares[pi];
-    const d = document.createElement('div');
-    d.className = 'desenho-item'; d.id = 'pd-' + j; d.dataset.target = pi;
-    d.innerHTML = `<span class="ds-emoji">${p.exemplo}</span><span class="ds-ex">${p.ex_label}</span>`;
-    d.onclick = () => selectDir(j);
-    dir.appendChild(d);
+  dirEmbaralhado.forEach((pi,j)=>{
+    const p=pares[pi]; const d=document.createElement('div');
+    d.className='desenho-item'; d.id='pd-'+j; d.dataset.target=pi;
+    d.innerHTML=`<span class="ds-emoji">${p.exemplo}</span><span class="ds-ex">${p.ex_label}</span>`;
+    d.onclick=()=>selectDir(j); dir.appendChild(d);
   });
   resizeSvg();
 }
-
-function resizeSvg() {
-  const wrap = document.getElementById('svg-wrap');
-  const esq  = document.getElementById('col-esq');
-  wrap.style.height = esq.offsetHeight + 'px';
-  const svg = document.getElementById('linhas-svg');
-  svg.setAttribute('viewBox', '0 0 70 ' + esq.offsetHeight);
-  svg.innerHTML = '';
+function resizeSvg(){
+  const wrap=document.getElementById('svg-wrap'), esq=document.getElementById('col-esq');
+  wrap.style.height=esq.offsetHeight+'px';
+  const svg=document.getElementById('linhas-svg');
+  svg.setAttribute('viewBox','0 0 70 '+esq.offsetHeight); svg.innerHTML='';
 }
-
-function selectEsq(i) {
-  const el = document.getElementById('pe-' + i);
-  if (el.classList.contains('done')) return;
-  document.querySelectorAll('.palavra-item').forEach(e => e.classList.remove('sel'));
-  el.classList.add('sel'); selEsq = i;
+function selectEsq(i){
+  const el=document.getElementById('pe-'+i); if(el.classList.contains('done')) return;
+  document.querySelectorAll('.palavra-item').forEach(e=>e.classList.remove('sel'));
+  el.classList.add('sel'); selEsq=i;
 }
-
-function selectDir(j) {
-  const el = document.getElementById('pd-' + j);
-  if (el.classList.contains('done')) return;
-  if (selEsq === null) { showFb('fb1', false, '✘ PRIMEIRO TOQUE NA PALAVRA À ESQUERDA!'); return; }
-  const alvo = parseInt(el.dataset.target);
-  if (alvo === selEsq) {
-    document.getElementById('pe-' + selEsq).classList.remove('sel');
-    document.getElementById('pe-' + selEsq).classList.add('done');
-    el.classList.add('done');
-    drawLinha(selEsq, j);
-    selEsq = null; ligCount++;
-    document.getElementById('fb1').className = 'feedback';
-    if (ligCount === pares.length) {
-      pts[0] = calcPts(0, 5); setBadge(0, pts[0], 5);
-      showFb('fb1', true, '✔ MUITO BEM! VOCÊ LIGOU TUDO CERTO! ' + fmtInt(pts[0]) + ' PONTOS!');
-      done[0] = true; checkDone();
+function selectDir(j){
+  const el=document.getElementById('pd-'+j); if(el.classList.contains('done')) return;
+  if(selEsq===null){ showFb('fb1',false,'👆 PRIMEIRO TOQUE NA PALAVRA À ESQUERDA!'); return; }
+  const alvo=parseInt(el.dataset.target);
+  if(alvo===selEsq){
+    document.getElementById('pe-'+selEsq).classList.remove('sel');
+    document.getElementById('pe-'+selEsq).classList.add('done');
+    el.classList.add('done'); drawLinha(selEsq,j);
+    selEsq=null; ligCount++;
+    document.getElementById('fb1').className='feedback';
+    if(ligCount===pares.length){
+      pts[0]=calcPts(0,5); setBadge(0,pts[0],5);
+      showFb('fb1',true,'✔ MUITO BEM! VOCÊ LIGOU TUDO CERTO! '+fmtInt(pts[0])+' PONTOS!');
+      done[0]=true; checkDone();
     }
   } else {
     erros[0]++;
     el.classList.add('err-flash');
-    document.getElementById('pe-' + selEsq).classList.remove('sel');
-    document.getElementById('pe-' + selEsq).classList.add('err-flash');
-    selEsq = null;
-    showFb('fb1', false, '✘ NÃO É ESSE! OLHA BEM E TENTE DE NOVO! (−1 PTO)');
-    setTimeout(() => {
-      document.querySelectorAll('.err-flash').forEach(e => e.classList.remove('err-flash'));
-      document.getElementById('fb1').className = 'feedback';
-    }, 1200);
+    document.getElementById('pe-'+selEsq).classList.remove('sel');
+    document.getElementById('pe-'+selEsq).classList.add('err-flash');
+    selEsq=null;
+    showFb('fb1',false,'✘ NÃO É ESSE! TENTE DE NOVO! (−1 PTO)');
+    setTimeout(()=>{ document.querySelectorAll('.err-flash').forEach(e=>e.classList.remove('err-flash')); document.getElementById('fb1').className='feedback'; },1200);
   }
 }
-
-function drawLinha(ei, di) {
-  const le = document.getElementById('pe-' + ei);
-  const re = document.getElementById('pd-' + di);
-  const wrap = document.getElementById('svg-wrap');
-  const wr = wrap.getBoundingClientRect();
-  const lr = le.getBoundingClientRect();
-  const rr = re.getBoundingClientRect();
-  const y1 = (lr.top + lr.height/2) - wr.top;
-  const y2 = (rr.top + rr.height/2) - wr.top;
-  const svg = document.getElementById('linhas-svg');
-  svg.setAttribute('viewBox', '0 0 70 ' + wrap.offsetHeight);
-  const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-  line.setAttribute('x1','2'); line.setAttribute('y1', y1);
-  line.setAttribute('x2','68'); line.setAttribute('y2', y2);
-  line.setAttribute('stroke','#28A745'); line.setAttribute('stroke-width','3');
-  line.setAttribute('stroke-linecap','round'); line.setAttribute('stroke-dasharray','none');
+function drawLinha(ei,di){
+  const le=document.getElementById('pe-'+ei), re=document.getElementById('pd-'+di);
+  const wrap=document.getElementById('svg-wrap');
+  const wr=wrap.getBoundingClientRect(), lr=le.getBoundingClientRect(), rr=re.getBoundingClientRect();
+  const y1=(lr.top+lr.height/2)-wr.top, y2=(rr.top+rr.height/2)-wr.top;
+  const svg=document.getElementById('linhas-svg');
+  svg.setAttribute('viewBox','0 0 70 '+wrap.offsetHeight);
+  const line=document.createElementNS('http://www.w3.org/2000/svg','line');
+  line.setAttribute('x1','2'); line.setAttribute('y1',y1);
+  line.setAttribute('x2','68'); line.setAttribute('y2',y2);
+  line.setAttribute('stroke','#28A745'); line.setAttribute('stroke-width','3'); line.setAttribute('stroke-linecap','round');
   svg.appendChild(line);
 }
+buildLigar(); window.addEventListener('resize',buildLigar);
 
-buildLigar(); window.addEventListener('resize', buildLigar);
-
-// ===== ATIVIDADE 2 — CIRCULE =====
-const q2Items = [
-  { icon:'🗣️', label:'FALA',         ok: true  },
-  { icon:'🎵', label:'MÚSICA',        ok: true  },
-  { icon:'🏀', label:'BOLA',          ok: false },
-  { icon:'🖼️', label:'DESENHO',       ok: true  },
-  { icon:'🍎', label:'MAÇÃ',          ok: false },
-  { icon:'🔢', label:'NÚMERO',        ok: true  },
-  { icon:'🤟', label:'SINAL',         ok: true  },
-  { icon:'🎂', label:'BOLO',          ok: false },
+// Q2 — TOQUE NAS LINGUAGENS (6 itens, embaralhado)
+const q2Data = [
+  { icon:'🗣️', label:'FALA',    ok:true  },
+  { icon:'✏️', label:'DESENHO', ok:true  },
+  { icon:'🔢', label:'NÚMERO',  ok:true  },
+  { icon:'🪧', label:'SINAL',   ok:true  },
+  { icon:'🍎', label:'MAÇÃ',    ok:false },
+  { icon:'⚽', label:'BOLA',    ok:false },
 ];
-
-function buildQ2() {
-  const grid = document.getElementById('circule-grid');
-  grid.innerHTML = '';
-  q2Items.forEach((item, i) => {
-    const d = document.createElement('div');
-    d.id = 'q2-' + i;
-    d.style.cssText = 'border:3px solid #ddd;border-radius:16px;padding:12px 6px 10px;text-align:center;background:#FAFAFA;cursor:pointer;transition:border-color 0.15s,background 0.15s,transform 0.1s;user-select:none;';
-    d.innerHTML = `<span style="font-size:36px;display:block;margin-bottom:6px;">${item.icon}</span><span style="font-size:12px;font-weight:900;color:#555;text-transform:uppercase;letter-spacing:0.5px;">${item.label}</span>`;
-    d.onclick = () => {
-      if (d.style.borderColor === 'rgb(40, 167, 69)' || d.style.borderColor === 'rgb(220, 53, 69)') return;
-      d.style.borderColor = d.dataset.sel === '1' ? '#ddd' : '#F5A623';
-      d.style.background  = d.dataset.sel === '1' ? '#FAFAFA' : '#FFF4DD';
-      d.dataset.sel = d.dataset.sel === '1' ? '0' : '1';
+let q2Embaralhado=[];
+function buildQ2(){
+  q2Embaralhado=shuffle(q2Data);
+  const grid=document.getElementById('circ-grid'); grid.innerHTML='';
+  q2Embaralhado.forEach((item,i)=>{
+    const d=document.createElement('div'); d.className='circ-item'; d.id='ci-'+i;
+    d.innerHTML=`<span class="ci-icon">${item.icon}</span><span class="ci-txt">${item.label}</span>`;
+    d.onclick=()=>{
+      if(d.classList.contains('certo')||d.classList.contains('errado')) return;
+      d.classList.toggle('sel');
     };
     grid.appendChild(d);
   });
 }
 buildQ2();
-
-function checkQ2() {
-  let allOk = true;
-  q2Items.forEach((item, i) => {
-    const d = document.getElementById('q2-' + i);
-    const sel = d.dataset.sel === '1';
-    d.onclick = null;
-    if (item.ok && sel)  { d.style.borderColor='#28A745'; d.style.background='#D4EDDA'; }
-    else if (!item.ok && sel)  { d.style.borderColor='#DC3545'; d.style.background='#F8D7DA'; allOk=false; }
-    else if (item.ok && !sel)  { d.style.borderColor='#28A745'; d.style.background='#D4EDDA'; allOk=false; }
+function checkQ2(){
+  let allOk=true;
+  q2Embaralhado.forEach((item,i)=>{
+    const d=document.getElementById('ci-'+i);
+    const sel=d.classList.contains('sel');
+    d.onclick=null;
+    if(item.ok&&sel)       { d.classList.remove('sel'); d.classList.add('certo'); }
+    else if(!item.ok&&sel) { d.classList.remove('sel'); d.classList.add('errado'); allOk=false; }
+    else if(item.ok&&!sel) { d.classList.add('certo'); allOk=false; }
   });
-  if (allOk) {
-    pts[1] = calcPts(1, 5); setBadge(1, pts[1], 5);
-    showFb('fb2', true, '✔ ARRASOU! FALA, MÚSICA, DESENHO, NÚMERO E SINAL SÃO LINGUAGENS! ' + fmtInt(pts[1]) + ' PONTOS!');
-    document.getElementById('btn2').disabled = true;
-    done[1] = true; checkDone();
+  if(allOk){
+    pts[1]=calcPts(1,5); setBadge(1,pts[1],5);
+    showFb('fb2',true,'✔ ISSO MESMO! FALA, DESENHO, NÚMERO E SINAL SÃO LINGUAGENS! '+fmtInt(pts[1])+' PONTOS!');
+    document.getElementById('btn2').disabled=true;
+    done[1]=true; checkDone();
   } else {
     erros[1]++;
-    showFb('fb2', false, '✘ QUASE! AS VERDES SÃO AS CORRETAS. TENTE DE NOVO! (−1 PTO)');
-    setTimeout(() => {
-      buildQ2(); document.getElementById('fb2').className = 'feedback';
-    }, 2500);
+    showFb('fb2',false,'✘ QUASE! AS VERDES SÃO AS CORRETAS. TENTE DE NOVO! (−1 PTO)');
+    setTimeout(()=>{ buildQ2(); document.getElementById('fb2').className='feedback'; },2500);
   }
 }
 
-// ===== NOTA FINAL =====
-function mostrarNota() {
-  const total = pts[0] + pts[1];
-  const nota  = Math.round(total * 10) / 10;
-  const circ  = document.getElementById('nota-circ');
-  document.getElementById('nota-num').textContent = fmtInt(nota);
-  circ.className = 'nota-circulo ' + (nota===10?'n10':nota>=7?'nalta':nota>=5?'nmed':'nbaixa');
-
-  const det = document.getElementById('nota-det');
-  det.innerHTML = [['LIGAR',pts[0]],['CLIQUE',pts[1]]].map(([n,p])=>`
-    <div class="det-card ${p>=5?'ok':'err'}">
-      <div class="det-nome">${n}</div>
-      <div class="det-pts">${fmtInt(p)} pts</div>
-    </div>`).join('');
-
-  let emoji, ests, titulo, msg;
-  if (nota===10) { emoji='🏆';ests='⭐⭐⭐';titulo='NOTA 10! INCRÍVEL!';msg='VOCÊ ACERTOU TUDO!\nPARABÉNS, EXPERT EM LINGUAGENS!'; }
-  else if (nota>=7) { emoji='😄';ests='⭐⭐';titulo='MUITO BEM!';msg='VOCÊ APRENDEU MUITO!\nTENTE DE NOVO PARA TIRAR 10!'; }
-  else { emoji='💪';ests='⭐';titulo='CONTINUE TENTANDO!';msg='RELEIA O CONTEÚDO E TENTE DE NOVO!'; }
-
-  document.getElementById('nota-emoji').textContent    = emoji;
-  document.getElementById('nota-estrelas').textContent = ests;
-  document.getElementById('nota-titulo').textContent   = titulo;
-  document.getElementById('nota-msg').textContent      = msg;
-  document.getElementById('nota-wrap').classList.add('show');
-  document.getElementById('nota-wrap').scrollIntoView({ behavior:'smooth' });
+// NOTA FINAL
+function mostrarNota(){
+  const total=pts[0]+pts[1], nota=Math.round(total*10)/10;
+  document.getElementById('nota-num').textContent=fmtInt(nota);
+  const circ=document.getElementById('nota-circ');
+  circ.className='nota-circ '+(nota===10?'n10':nota>=7?'nalta':nota>=5?'nmed':'nbaixa');
+  document.getElementById('nota-det').innerHTML=
+    [['LIGAR',pts[0]],['LINGUAGENS',pts[1]]].map(([n,p])=>
+      `<div class="det-card ${p>=5?'ok':p>=2.5?'par':'err'}"><div class="det-nome">${n}</div><div class="det-pts">${fmtInt(p)} pts</div></div>`
+    ).join('');
+  let emoji,ests,titulo,msg;
+  if(nota===10){ emoji='🏆';ests='⭐⭐⭐';titulo='NOTA 10! INCRÍVEL!';msg='VOCÊ ACERTOU TUDO!\nPARABÉNS!'; }
+  else if(nota>=7){ emoji='😄';ests='⭐⭐';titulo='MUITO BEM!';msg='VOCÊ APRENDEU MUITO!\nTENTE DE NOVO PARA TIRAR 10!'; }
+  else{ emoji='💪';ests='⭐';titulo='CONTINUE TENTANDO!';msg='TENTE DE NOVO!\nVOCÊ CONSEGUE!'; }
+  document.getElementById('nota-emoji').textContent=emoji;
+  document.getElementById('nota-estrelas').textContent=ests;
+  document.getElementById('nota-titulo').textContent=titulo;
+  document.getElementById('nota-msg').textContent=msg;
+  const wrap=document.getElementById('nota-wrap');
+  wrap.style.display='block'; wrap.classList.add('show');
+  setTimeout(()=>wrap.scrollIntoView({behavior:'smooth',block:'start'}),100);
 }
 
-function showFb(id, ok, msg) {
-  const el = document.getElementById(id);
-  el.textContent = msg; el.className = 'feedback ' + (ok?'ok':'err') + ' show';
-}
-
-function reiniciar() {
+function reiniciar(){
   pts=[0,0]; erros=[0,0]; done=[false,false];
   const b1=document.getElementById('badge1'); if(b1){b1.textContent='VALE 5 PTS';b1.className='act-pontos';}
   const b2=document.getElementById('badge2'); if(b2){b2.textContent='VALE 5 PTS';b2.className='act-pontos';}
   selEsq=null; ligCount=0; buildLigar();
   buildQ2(); document.getElementById('btn2').disabled=false;
-  ['fb1','fb2'].forEach(id => document.getElementById(id).className='feedback');
-  document.getElementById('nota-wrap').classList.remove('show');
+  ['fb1','fb2'].forEach(id=>document.getElementById(id).className='feedback');
+  const wrap=document.getElementById('nota-wrap'); wrap.classList.remove('show'); wrap.style.display='none';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 </script>
